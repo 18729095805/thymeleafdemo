@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+this is my index.......................<br>
+
+<p th:text="${message}"></p>
+<span th:text="${user.id}"></span><br>
+<span th:text="${user.name}"></span><br>
+<span th:text="${user.age}"></span><br>
+<img th:src="${src.src1}" alt="">
+<img th:src="${src.src2}" alt="">
+<p>[[${message}]]</p>
+</body>
+<table>
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>id</td>
+    </tr>
+    <tr th:each="user,iterStart:${list}">
+        <td th:text="${iterStart.index+1}"></td>
+        <td>[[${user.name}]]</td>
+        <td>[[${user.age}]]</td>
+        <td>[[${user.id}]]</td>
+    </tr>
+<!--拼接-->
+</table>
+<!--拼接-->
+<span th:text="'欢迎'+${message}+'学习'"></span><br>
+<span th:text="|欢迎${message}学习|"></span><br>
+<h1 th:if="${message == 'hello-thymeleaf'}">james的空间</h1>
+<h1 th:unless="${message == 'hello-thymeleaf'}">james的地狱</h1>
+-------------------------------------
+<!--引入代码片段-->
+<div th:insert="~{foot :: my}">
+
+</div>
+-----------------------------<br>
+<div th:replace="~{foot :: my}">
+
+</div>
+-----------------------------<br>
+<div th:include="~{foot :: my}">
+
+</div>
+<!--stirng操作-->
+<span th:if="${#strings.isEmpty(str)}">str2222</span>
+<span th:text="${#strings.substring(str,0,5)}">str2222</span>
+<span th:text="${#strings.abbreviate(str,10)}"></span><br>
+-----------------------------------------
+时间：<span th:text="${#dates.format(date,'yyyy-MM-dd HH:mm:ss')}"></span>
+数字：<span th:text="|${#numbers.formatDecimal(price,1,2)}|"></span>
+</html>
